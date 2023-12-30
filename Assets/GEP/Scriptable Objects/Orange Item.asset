@@ -17,3 +17,4 @@ MonoBehaviour:
   DisplayDescription: 
   Width: 3
   Height: 1
+  SlotColour: {r: 1, g: 0.5379274, b: 0, a: 0}

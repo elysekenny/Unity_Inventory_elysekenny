@@ -13,4 +13,7 @@ public class ItemData : ScriptableObject
     //dimensions for the grid
     public int Width;
     public int Height;
+
+    //slot colour
+    public Color SlotColour;
 }

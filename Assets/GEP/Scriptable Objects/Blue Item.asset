@@ -17,3 +17,4 @@ MonoBehaviour:
   DisplayDescription: This item is blue!
   Width: 1
   Height: 1
+  SlotColour: {r: 0, g: 0.61708117, b: 1, a: 0}
