@@ -29,6 +29,7 @@ public class InventorySystem
 
     public bool AddToInventory(ItemData itemToAdd)
     {
+        //create new slot ui
         if(HasFreeSlot(out InventorySlot freeSlot))
         {
             //adds item to next slot
@@ -48,4 +49,5 @@ public class InventorySystem
         freeSlot = InventorySlots.FirstOrDefault(i => i.Item_Data == null);
         return freeSlot == null ? false : true;
     }
+
 }

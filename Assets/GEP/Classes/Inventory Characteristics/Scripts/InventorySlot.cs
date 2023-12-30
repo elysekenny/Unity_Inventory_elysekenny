@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class InventorySlot 
 {
     [SerializeField] private ItemData item_data;
+    public Image icon;
 
     public ItemData Item_Data => item_data;
 
@@ -31,4 +33,9 @@ public class InventorySlot
         item_data = data;
     }
 
+    public void DrawSlot(ItemData item)
+    {
+        icon.sprite = item.Icon;
+        icon.color = item.SlotColour;
+    }
 }
