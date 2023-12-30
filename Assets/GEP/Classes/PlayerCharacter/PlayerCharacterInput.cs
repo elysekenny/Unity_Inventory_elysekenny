@@ -10,7 +10,6 @@ public class PlayerCharacterInput : MonoBehaviour
     public Vector2 look;
     public bool jump;
     public bool sprint;
-    public bool inventory_toggle;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -18,8 +17,6 @@ public class PlayerCharacterInput : MonoBehaviour
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
-
-    public bool inventory_is_open = false;
 
     public void OnMove(InputValue value)
     {
@@ -44,20 +41,6 @@ public class PlayerCharacterInput : MonoBehaviour
         SprintInput(value.isPressed);
     }
 
-    public void OnInventoryToggle(InputValue value)
-    {
-        InventoryToggle(value.isPressed);
-
-        //changes the state of the inventory
-        if (inventory_is_open)
-        {
-            inventory_is_open = false;
-        }
-        else
-        {
-            inventory_is_open = true;
-        }
-    }
 
     public void MoveInput(Vector2 newMoveDirection)
     {
@@ -77,10 +60,6 @@ public class PlayerCharacterInput : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
-    }
-    public void InventoryToggle(bool is_toggled)
-    {
-        inventory_toggle = is_toggled;
     }
 
     private void OnApplicationFocus(bool hasFocus)
