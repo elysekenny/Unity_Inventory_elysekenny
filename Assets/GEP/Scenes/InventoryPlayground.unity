@@ -5055,7 +5055,6 @@ GameObject:
   - component: {fileID: 1497987804}
   - component: {fileID: 1497987806}
   - component: {fileID: 1497987805}
-  - component: {fileID: 1497987807}
   m_Layer: 5
   m_Name: Border
   m_TagString: Inventory
@@ -5122,18 +5121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497987803}
   m_CullTransparentMesh: 1
---- !u!114 &1497987807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497987803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8004f3c375d9644baca7e3ed7ac9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1521439643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5533,6 +5520,7 @@ GameObject:
   - component: {fileID: 1601015252}
   - component: {fileID: 1601015251}
   - component: {fileID: 1601015250}
+  - component: {fileID: 1601015254}
   m_Layer: 5
   m_Name: InventoryScreen
   m_TagString: Inventory
@@ -5624,6 +5612,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1601015254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601015249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8004f3c375d9644baca7e3ed7ac9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1697071423
 GameObject:
   m_ObjectHideFlags: 0
