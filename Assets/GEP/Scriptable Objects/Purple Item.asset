@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cc522288cd555448b995395f8ba3d1, type: 3}
   m_Name: Purple Item
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  DisplayName: Purple
-  DisplayDescription: 
+  Icon: {fileID: 21300000, guid: e85c8d60f595e584d901d8c7a7f4738c, type: 3}
+  DisplayName: Purple Rain
+  DisplayDescription: Probably toxic
   Width: 2
   Height: 2
   SlotColour: {r: 0.5509499, g: 0, b: 0.6320754, a: 0}

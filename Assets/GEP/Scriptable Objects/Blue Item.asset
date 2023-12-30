@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cc522288cd555448b995395f8ba3d1, type: 3}
   m_Name: Blue Item
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  DisplayName: Blue
-  DisplayDescription: This item is blue!
+  Icon: {fileID: 21300000, guid: fa38ce55aee70a7479d361695c5882b7, type: 3}
+  DisplayName: Potion of.. water?
+  DisplayDescription: This might just be a water bottle.
   Width: 1
   Height: 1
   SlotColour: {r: 0, g: 0.61708117, b: 1, a: 0}

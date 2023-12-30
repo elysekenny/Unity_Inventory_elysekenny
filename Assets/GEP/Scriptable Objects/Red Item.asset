@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cc522288cd555448b995395f8ba3d1, type: 3}
   m_Name: Red Item
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  DisplayName: Red
-  DisplayDescription: This item is red!
+  Icon: {fileID: 21300000, guid: a7c4d3f24c04548459c3f24863956e59, type: 3}
+  DisplayName: Potion of health
+  DisplayDescription: Regular healing potion... nothing suspicious about this
   Width: 2
   Height: 1
   SlotColour: {r: 0.6603774, g: 0, b: 0.07644928, a: 0}
