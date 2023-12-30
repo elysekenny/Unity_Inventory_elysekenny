@@ -5,11 +5,11 @@ using UnityEngine;
 public class InventoryToggle : MonoBehaviour
 {
     private bool inventory_is_open;
-    private CanvasRenderer screen;
+    private Canvas screen;
     private void Awake()
     {
         inventory_is_open = false;
-        screen = GetComponent<CanvasRenderer>();
+        screen = GetComponent<Canvas>();
     }
 
     private void Update()
@@ -17,10 +17,12 @@ public class InventoryToggle : MonoBehaviour
         if(inventory_is_open)
         {
             //if the button is pressed hide the inventory
+            screen.enabled = false;
         }
         else
         {
             //show the inventory
+            screen.enabled = true;
         }
     }
 }

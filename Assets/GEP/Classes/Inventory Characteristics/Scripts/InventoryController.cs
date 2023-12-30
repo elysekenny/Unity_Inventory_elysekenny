@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private ItemGrid itemGrid;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (itemGrid == null) { return; }
+
+        Debug.Log(itemGrid.GetTileGridPosition(Input.mousePosition));
     }
 }
