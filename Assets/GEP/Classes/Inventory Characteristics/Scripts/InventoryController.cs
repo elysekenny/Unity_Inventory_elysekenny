@@ -10,7 +10,10 @@ public class InventoryController : MonoBehaviour
     {
         if (itemGrid == null) { return; }
 
-        if (Input.GetMouseButtonDown(0)) { Debug.Log(itemGrid.GetTileGridPosition(Input.mousePosition)); }
+        if (Input.GetMouseButtonDown(0))
+        { 
+            Debug.Log(itemGrid.GetTileGridPosition(Input.mousePosition)); 
+        }
        
     }
 }
