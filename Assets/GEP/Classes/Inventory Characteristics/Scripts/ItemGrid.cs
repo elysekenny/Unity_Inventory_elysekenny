@@ -18,14 +18,10 @@ public class ItemGrid : MonoBehaviour
     [SerializeField] private int gridWidth;
     [SerializeField] private int gridHeight;
 
-    [SerializeField] GameObject item_prefab;
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         Init(gridWidth, gridHeight);
-
-        InventoryItem item = Instantiate(item_prefab).GetComponent<InventoryItem>();
-        PlaceItem(item, 3, 2);
     }
     public InventoryItem PickUpItem(int x, int y)
     {
