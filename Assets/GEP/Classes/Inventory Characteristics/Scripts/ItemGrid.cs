@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    const float tile_size = 32;
-    Vector2 GridPos = new Vector2();
+    const float tile_size_width = 83.64f;
+    const float tile_size_height = 95;
+    public Vector2 GridPos = new Vector2();
     Vector2Int TileGridPos = new Vector2Int();
 
     RectTransform rectTransform;
@@ -18,8 +19,8 @@ public class ItemGrid : MonoBehaviour
         GridPos.x = mousePos.x - rectTransform.position.x;
         GridPos.y = rectTransform.position.y - mousePos.y;
 
-        TileGridPos.x = (int)(GridPos.x / tile_size);
-        TileGridPos.y = (int)(GridPos.y / tile_size);
+        TileGridPos.x = (int)(GridPos.x / tile_size_width);
+        TileGridPos.y = (int)(GridPos.y / tile_size_height);
 
         return TileGridPos;
     }
