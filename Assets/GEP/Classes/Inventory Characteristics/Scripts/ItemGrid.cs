@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    InventoryItem[,] item_slot;
+    InventoryItem[,] item_slots;
 
     const float tile_size_width = 83.64f;
     const float tile_size_height = 95;
@@ -27,10 +27,16 @@ public class ItemGrid : MonoBehaviour
         InventoryItem item = Instantiate(item_prefab).GetComponent<InventoryItem>();
         PlaceItem(item, 3, 2);
     }
+    public InventoryItem PickUpItem(int x, int y)
+    {
+        InventoryItem toReturn = item_slots[x, y];
+        item_slots[x, y] = null;
+        return toReturn;
+    }
 
     private void Init(int width, int height)
     {
-        item_slot = new InventoryItem[width, height];
+        item_slots = new InventoryItem[width, height];
         Vector2 size = new Vector2(width * tile_size_width, height * tile_size_height);
         rectTransform.sizeDelta = size;
     }
@@ -51,7 +57,7 @@ public class ItemGrid : MonoBehaviour
         RectTransform rectTransform = item_to_place.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
 
-        item_slot[pos_x, pos_y] = item_to_place;
+        item_slots[pos_x, pos_y] = item_to_place;
 
         Vector2 position = new Vector2();
         position.x = pos_x *tile_size_width + (tile_size_width) / 2;
