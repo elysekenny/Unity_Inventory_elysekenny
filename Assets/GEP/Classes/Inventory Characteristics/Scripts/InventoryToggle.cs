@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class InventoryToggle : MonoBehaviour
 {
-    private bool inventory_is_open;
-    private Canvas screen;
-    private void Awake()
+    private bool inventory_is_open = false;
+    public GameObject inventory_screen;
+
+    private void Start()
     {
         inventory_is_open = false;
-        screen = GetComponent<Canvas>();
     }
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            inventory_is_open = !inventory_is_open;
+        }
+
+        inventory_screen.SetActive(inventory_is_open);
+        Cursor.visible = inventory_is_open;
+
         if(inventory_is_open)
         {
-            //if the button is pressed hide the inventory
-            screen.enabled = false;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
-            //show the inventory
-            screen.enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
