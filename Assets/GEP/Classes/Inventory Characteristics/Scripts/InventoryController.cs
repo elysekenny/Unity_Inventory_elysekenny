@@ -95,13 +95,11 @@ public class InventoryController : MonoBehaviour
 
     private void UpdateText()
     {
-        item_name = GameObject.Find("Item Name");
-        item_description = GameObject.Find("Description");
+        TextMeshProUGUI name_text = item_name.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI description_text = item_description.GetComponent<TextMeshProUGUI>();
 
-        TextMeshPro name_text = item_name.GetComponent<TextMeshPro>();
-        TextMeshPro description_text = item_description.GetComponent<TextMeshPro>();
-
-        name_text.SetText(selected_item.item_data.DisplayName);
-        description_text.SetText(selected_item.item_data.DisplayDescription);
+        //name_text.color = selected_item.item_data.SlotColour;
+        name_text.text = selected_item.item_data.DisplayName;  
+        description_text.text = selected_item.item_data.DisplayDescription;
     }
 }
