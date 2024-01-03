@@ -26,11 +26,9 @@ public class InventoryController : MonoBehaviour
 
         ItemDrag();
 
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            //CreateSlotBackground();
-            CreateItem(item_collected.getItemPickedUp());
-        }
+        
+        CreateItem(item_collected.getItemPickedUp());
+        
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -50,7 +48,7 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetParent(canvas_transform);
 
         int selected_item_ID = selected_item.item_data.ItemID;
-        item_to_add.Set(item_data);
+        item_to_add.Set(items[selected_item_ID]);
     }
     private void CreateSlotBackground()
     {
