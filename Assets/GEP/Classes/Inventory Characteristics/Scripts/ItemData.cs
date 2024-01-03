@@ -16,4 +16,7 @@ public class ItemData : ScriptableObject
 
     //slot colour
     public Color SlotColour;
+
+    //id in the item list
+    public int ItemID;
 }

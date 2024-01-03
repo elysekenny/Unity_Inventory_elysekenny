@@ -3711,7 +3711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d780ea1df06b3fd4d85783f5248abdec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySize: 40
+  inventorySize: 44
   inventorySystem:
     inventorySlots: []
 --- !u!114 &971310025
@@ -5420,17 +5420,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemGrid: {fileID: 304591484}
-  items:
-  - {fileID: 11400000, guid: 7ed0cf533c4222d49b108b91951cffa9, type: 2}
-  - {fileID: 11400000, guid: 03c7a59bd0d74bb418b5841fdcadaf60, type: 2}
-  - {fileID: 11400000, guid: 9c58dcc3987c05947b79860a540c6dda, type: 2}
-  - {fileID: 11400000, guid: b42ebc8b8bbd1404d93990197dab4cc1, type: 2}
-  - {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
-  - {fileID: 11400000, guid: 160bcf4fa78201a49929c6096ba847b2, type: 2}
+  items: []
   item_prefab: {fileID: 5646697626644835478, guid: 9d9de52da32c42540bdecced3626f230,
     type: 3}
   slot: {fileID: 3617991168193653280, guid: ebd7f033fd07a324586d070c85eaa41d, type: 3}
   canvas_transform: {fileID: 304591482}
+  player_inventory: {fileID: 971310014}
   item_name: {fileID: 657754534}
   item_description: {fileID: 1339808371}
 --- !u!1 &1497987803

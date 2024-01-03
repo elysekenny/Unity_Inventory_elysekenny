@@ -16,6 +16,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject item_prefab;
     [SerializeField] GameObject slot;
     [SerializeField] Transform canvas_transform;
+    [SerializeField] ExampleItem item_collected;
     public GameObject item_name;
     public GameObject item_description;
 
@@ -28,7 +29,7 @@ public class InventoryController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             //CreateSlotBackground();
-            CreateItem();
+            CreateItem(item_collected.getItemPickedUp());
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -40,7 +41,7 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    private void CreateItem()
+    private void CreateItem(ItemData item_data)
     {
         InventoryItem item_to_add = Instantiate(item_prefab).GetComponent<InventoryItem>();
         selected_item = item_to_add;
@@ -48,8 +49,8 @@ public class InventoryController : MonoBehaviour
         rectTransform = item_to_add.GetComponent<RectTransform>();
         rectTransform.SetParent(canvas_transform);
 
-        int selected_item_ID = UnityEngine.Random.Range(0, items.Count);
-        item_to_add.Set(items[selected_item_ID]);
+        int selected_item_ID = selected_item.item_data.ItemID;
+        item_to_add.Set(item_data);
     }
     private void CreateSlotBackground()
     {

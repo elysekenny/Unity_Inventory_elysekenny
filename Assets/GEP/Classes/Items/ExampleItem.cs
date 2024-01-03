@@ -7,6 +7,14 @@ public class ExampleItem : MonoBehaviour, IPickupable
     public ItemData ItemData;
     public void Pickup(InventoryHolder inventory)
     {
-        if (inventory.InventorySystem.AddToInventory(ItemData)) {Destroy(gameObject); }
+        if (inventory.InventorySystem.AddToInventory(ItemData)) 
+        {
+            Destroy(gameObject); 
+        }
+    }
+
+    public ItemData getItemPickedUp()
+    {
+        return ItemData;
     }
 }
