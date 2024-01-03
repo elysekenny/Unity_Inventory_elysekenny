@@ -1006,8 +1006,6 @@ MonoBehaviour:
   GridPos: {x: 0, y: 0}
   gridWidth: 11
   gridHeight: 4
-  item_prefab: {fileID: 5646697626644835478, guid: 9d9de52da32c42540bdecced3626f230,
-    type: 3}
 --- !u!114 &304591485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1813,7 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10dc1f349b744a43bf4aa685ce1c7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  ItemData: {fileID: 11400000, guid: 03c7a59bd0d74bb418b5841fdcadaf60, type: 2}
 --- !u!65 &581790481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3608,7 +3606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10dc1f349b744a43bf4aa685ce1c7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  ItemData: {fileID: 11400000, guid: 7ed0cf533c4222d49b108b91951cffa9, type: 2}
 --- !u!65 &893323119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5422,6 +5420,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemGrid: {fileID: 304591484}
+  items:
+  - {fileID: 11400000, guid: 7ed0cf533c4222d49b108b91951cffa9, type: 2}
+  - {fileID: 11400000, guid: 03c7a59bd0d74bb418b5841fdcadaf60, type: 2}
+  - {fileID: 11400000, guid: 9c58dcc3987c05947b79860a540c6dda, type: 2}
+  - {fileID: 11400000, guid: b42ebc8b8bbd1404d93990197dab4cc1, type: 2}
+  - {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  - {fileID: 11400000, guid: 160bcf4fa78201a49929c6096ba847b2, type: 2}
+  item_prefab: {fileID: 5646697626644835478, guid: 9d9de52da32c42540bdecced3626f230,
+    type: 3}
+  canvas_transform: {fileID: 304591482}
 --- !u!1 &1497987803
 GameObject:
   m_ObjectHideFlags: 0

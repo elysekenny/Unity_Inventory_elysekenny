@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class InventoryController : MonoBehaviour
     RectTransform rectTransform;
 
     [SerializeField] List<ItemData> items;
+    [SerializeField] GameObject item_prefab;
+    [SerializeField] Transform canvas_transform;
 
     private void Update()
     {
@@ -17,11 +20,28 @@ public class InventoryController : MonoBehaviour
 
         ItemDrag();
 
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            CreateItem();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             SelectItem();
         }
 
+    }
+
+    private void CreateItem()
+    {
+        InventoryItem item_to_add = Instantiate(item_prefab).GetComponent<InventoryItem>();
+        selected_item = item_to_add;
+
+        rectTransform = item_to_add.GetComponent<RectTransform>();
+        rectTransform.SetParent(canvas_transform);
+
+        int selected_item_ID = UnityEngine.Random.Range(0, items.Count);
+        item_to_add.Set(items[selected_item_ID]);
     }
 
     private void SelectItem()

@@ -7,8 +7,8 @@ public class ItemGrid : MonoBehaviour
 {
     InventoryItem[,] item_slots;
 
-    const float tile_size_width = 83.64f;
-    const float tile_size_height = 95;
+    public const float tile_size_width = 83.64f;
+    public const float tile_size_height = 95;
 
     public Vector2 GridPos = new Vector2();
     Vector2Int TileGridPos = new Vector2Int();
@@ -56,8 +56,8 @@ public class ItemGrid : MonoBehaviour
         item_slots[pos_x, pos_y] = item_to_place;
 
         Vector2 position = new Vector2();
-        position.x = pos_x *tile_size_width + (tile_size_width) / 2;
-        position.y = -(pos_y * tile_size_height + (tile_size_height) / 2);
+        position.x = pos_x *tile_size_width + (tile_size_width) * item_to_place.item_data.Width / 2;
+        position.y = -(pos_y * tile_size_height + (tile_size_height) * item_to_place.item_data.Height / 2);
 
         rectTransform.localPosition = position;
     }
