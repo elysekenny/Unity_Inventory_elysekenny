@@ -2167,8 +2167,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190284
+  m_fontColor: {r: 0.8018868, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4931,8 +4931,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283547184
+  m_fontColor: {r: 0.18632075, g: 0.745283, b: 0.31663173, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5429,7 +5429,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 160bcf4fa78201a49929c6096ba847b2, type: 2}
   item_prefab: {fileID: 5646697626644835478, guid: 9d9de52da32c42540bdecced3626f230,
     type: 3}
+  slot: {fileID: 3617991168193653280, guid: ebd7f033fd07a324586d070c85eaa41d, type: 3}
   canvas_transform: {fileID: 304591482}
+  item_name: {fileID: 657754534}
+  item_description: {fileID: 1339808371}
 --- !u!1 &1497987803
 GameObject:
   m_ObjectHideFlags: 0

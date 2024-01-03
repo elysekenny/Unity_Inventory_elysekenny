@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InventoryController : MonoBehaviour
 {
@@ -12,7 +14,10 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
+    [SerializeField] GameObject slot;
     [SerializeField] Transform canvas_transform;
+    public GameObject item_name;
+    public GameObject item_description;
 
     private void Update()
     {
@@ -22,6 +27,7 @@ public class InventoryController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q))
         {
+            //CreateSlotBackground();
             CreateItem();
         }
 
@@ -29,6 +35,8 @@ public class InventoryController : MonoBehaviour
         {
             SelectItem();
         }
+
+        UpdateText();
 
     }
 
@@ -42,6 +50,20 @@ public class InventoryController : MonoBehaviour
 
         int selected_item_ID = UnityEngine.Random.Range(0, items.Count);
         item_to_add.Set(items[selected_item_ID]);
+    }
+    private void CreateSlotBackground()
+    {
+        Image slot_background = Instantiate(slot).GetComponent<Image>();
+
+        rectTransform = slot_background.GetComponent<RectTransform>();
+        rectTransform.SetParent(canvas_transform);
+
+        slot_background.color = selected_item.item_data.SlotColour;
+
+        Vector2 size = new Vector2();
+        size.x = selected_item.item_data.Width * ItemGrid.tile_size_width;
+        size.y = selected_item.item_data.Height * ItemGrid.tile_size_height;
+        GetComponent<RectTransform>().sizeDelta = size;
     }
 
     private void SelectItem()
@@ -69,5 +91,17 @@ public class InventoryController : MonoBehaviour
     private void ItemDrag()
     {
         if (selected_item != null) { rectTransform.position = Input.mousePosition; }
+    }
+
+    private void UpdateText()
+    {
+        item_name = GameObject.Find("Item Name");
+        item_description = GameObject.Find("Description");
+
+        TextMeshPro name_text = item_name.GetComponent<TextMeshPro>();
+        TextMeshPro description_text = item_description.GetComponent<TextMeshPro>();
+
+        name_text.SetText(selected_item.item_data.DisplayName);
+        description_text.SetText(selected_item.item_data.DisplayDescription);
     }
 }
