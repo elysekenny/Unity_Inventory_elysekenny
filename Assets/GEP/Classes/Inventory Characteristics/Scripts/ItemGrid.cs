@@ -58,10 +58,13 @@ public class ItemGrid : MonoBehaviour
         return TileGridPos;
     }
 
-    public bool PlaceItem(InventoryItem item_to_place, int pos_x, int pos_y)
+    public bool PlaceItem(InventoryItem item_to_place, int pos_x, int pos_y, ref InventoryItem overlapItem)
     {
         //if out of boundaries do not allow item to be placed
         if(!boundaryCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height)) { return false; }
+
+        //if item does not pass the overlap check item cannot be placed!
+        if(!OverlapCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height, ref overlapItem)){ return false;}
 
         RectTransform rectTransform = item_to_place.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
@@ -82,6 +85,33 @@ public class ItemGrid : MonoBehaviour
         position.y = -(pos_y * tile_size_height + (tile_size_height) * item_to_place.item_data.Height / 2);
 
         rectTransform.localPosition = position;
+
+        return true;
+    }
+
+    private bool OverlapCheck(int pos_x, int pos_y, int width, int height, ref InventoryItem overlapItem)
+    {
+        for(int x = 0; x < width; x++)
+        {
+            for(int y = 0; y < height; y++)
+            {
+                if(item_slots[pos_x + x, pos_y + y] != null)
+                {
+                    if(overlapItem == null)
+                    {
+                        overlapItem = item_slots[pos_x + x, pos_y + y];
+                    }
+                    else
+                    {
+                        if(overlapItem != item_slots[pos_x + x, pos_y + y])
+                        {
+                            return false;
+                        }                     
+                    }
+                    
+                }
+            }
+        }
 
         return true;
     }

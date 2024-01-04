@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private ItemGrid itemGrid;
 
     InventoryItem selected_item;
+    InventoryItem overlapItem;
     RectTransform rectTransform;
 
     [SerializeField] List<ItemData> items;
@@ -83,7 +84,7 @@ public class InventoryController : MonoBehaviour
         else
         {
             //place item
-            bool complete = itemGrid.PlaceItem(selected_item, tile_grid_pos.x, tile_grid_pos.y);
+            bool complete = itemGrid.PlaceItem(selected_item, tile_grid_pos.x, tile_grid_pos.y, ref overlapItem);
             if (complete) { selected_item = null; }        
         }
     }
