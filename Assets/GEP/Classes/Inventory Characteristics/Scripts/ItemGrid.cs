@@ -26,7 +26,17 @@ public class ItemGrid : MonoBehaviour
     public InventoryItem PickUpItem(int x, int y)
     {
         InventoryItem toReturn = item_slots[x, y];
-        item_slots[x, y] = null;
+
+        if(toReturn == null) { return null; }
+
+        for(int i = 0; i < toReturn.item_data.Width; i++)
+        {
+            for(int j = 0; j < toReturn.item_data.Height; j++)
+            {
+                item_slots[toReturn.onGridPositionX + i, toReturn.onGridPositionY + j] = null;
+            }
+        }
+
         return toReturn;
     }
 
@@ -48,17 +58,58 @@ public class ItemGrid : MonoBehaviour
         return TileGridPos;
     }
 
-    public void PlaceItem(InventoryItem item_to_place, int pos_x, int pos_y)
+    public bool PlaceItem(InventoryItem item_to_place, int pos_x, int pos_y)
     {
+        //if out of boundaries do not allow item to be placed
+        if(!boundaryCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height)) { return false; }
+
         RectTransform rectTransform = item_to_place.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
 
-        item_slots[pos_x, pos_y] = item_to_place;
+        for(int x = 0; x< item_to_place.item_data.Width; x++)
+        {
+            for(int y = 0; y < item_to_place.item_data.Height; y++)
+            {
+                item_slots[pos_x + x, pos_y + y] = item_to_place;
+            }
+        }
+
+        item_to_place.onGridPositionX = pos_x;
+        item_to_place.onGridPositionY = pos_y;
 
         Vector2 position = new Vector2();
         position.x = pos_x *tile_size_width + (tile_size_width) * item_to_place.item_data.Width / 2;
         position.y = -(pos_y * tile_size_height + (tile_size_height) * item_to_place.item_data.Height / 2);
 
         rectTransform.localPosition = position;
+
+        return true;
+    }
+
+    bool isTileValid(int pos_x, int pos_y)
+    {
+        if(pos_x < 0 || pos_y < 0)
+        {
+            return false;
+        }
+
+        if(pos_x >= gridWidth || pos_y >= gridHeight)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    bool boundaryCheck(int pos_X, int pos_y, int width, int height)
+    {
+        if(isTileValid(pos_X, pos_y) == false) { return false; }
+
+        pos_X += width - 1;
+        pos_y += height - 1;
+
+        if(isTileValid(pos_X, pos_y) == false) { return false; }
+
+        return true;
     }
 }

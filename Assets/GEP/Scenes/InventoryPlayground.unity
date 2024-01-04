@@ -5425,7 +5425,7 @@ MonoBehaviour:
     type: 3}
   slot: {fileID: 3617991168193653280, guid: ebd7f033fd07a324586d070c85eaa41d, type: 3}
   canvas_transform: {fileID: 304591482}
-  player_inventory: {fileID: 971310014}
+  item_collected: {fileID: 1697071424}
   item_name: {fileID: 657754534}
   item_description: {fileID: 1339808371}
 --- !u!1 &1497987803

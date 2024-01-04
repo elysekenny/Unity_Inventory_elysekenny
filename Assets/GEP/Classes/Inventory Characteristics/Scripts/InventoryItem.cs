@@ -8,6 +8,8 @@ public class InventoryItem : MonoBehaviour
 {
     public ItemData item_data;
 
+    public int onGridPositionX;
+    public int onGridPositionY;
     internal void Set(ItemData itemData)
     {
         this.item_data = itemData;

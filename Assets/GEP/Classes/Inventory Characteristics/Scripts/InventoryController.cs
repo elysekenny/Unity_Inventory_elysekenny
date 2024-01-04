@@ -26,9 +26,11 @@ public class InventoryController : MonoBehaviour
 
         ItemDrag();
 
-        
-        CreateItem(item_collected.getItemPickedUp());
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CreateItem(item_collected.getItemPickedUp());
+        }
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -47,8 +49,7 @@ public class InventoryController : MonoBehaviour
         rectTransform = item_to_add.GetComponent<RectTransform>();
         rectTransform.SetParent(canvas_transform);
 
-        int selected_item_ID = selected_item.item_data.ItemID;
-        item_to_add.Set(items[selected_item_ID]);
+        item_to_add.Set(item_data);
     }
     private void CreateSlotBackground()
     {
@@ -82,8 +83,8 @@ public class InventoryController : MonoBehaviour
         else
         {
             //place item
-            itemGrid.PlaceItem(selected_item, tile_grid_pos.x, tile_grid_pos.y);
-            selected_item = null;
+            bool complete = itemGrid.PlaceItem(selected_item, tile_grid_pos.x, tile_grid_pos.y);
+            if (complete) { selected_item = null; }        
         }
     }
 
