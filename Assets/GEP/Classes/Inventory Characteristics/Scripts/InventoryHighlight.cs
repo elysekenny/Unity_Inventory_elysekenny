@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryHighlight : MonoBehaviour
 {
@@ -28,5 +29,11 @@ public class InventoryHighlight : MonoBehaviour
 
         highlighter.localPosition = pos;
 
+    }
+
+    public void SetColour(InventoryItem targetItem)
+    {
+        Image highlighterColour = targetItem.GetComponent<Image>();
+        highlighterColour.color = targetItem.item_data.SlotColour;
     }
 }

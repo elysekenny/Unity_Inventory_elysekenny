@@ -63,6 +63,7 @@ public class InventoryController : MonoBehaviour
                 inventoryHighlight.Show(true);
                 inventoryHighlight.SetSize(item_to_highlight);
                 inventoryHighlight.SetPosition(itemGrid, item_to_highlight);
+                //inventoryHighlight.SetColour(item_to_highlight);
             }
             else
             {
@@ -162,7 +163,7 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            //name_text.color = selected_item.item_data.SlotColour;
+            //name_text.color = item_to_highlight.item_data.SlotColour;
             name_text.text = item_to_highlight.item_data.DisplayName;
             description_text.text = item_to_highlight.item_data.DisplayDescription;
 
