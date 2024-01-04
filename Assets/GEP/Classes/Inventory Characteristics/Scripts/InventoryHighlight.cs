@@ -22,18 +22,27 @@ public class InventoryHighlight : MonoBehaviour
 
     public void SetPosition(ItemGrid targetGrid, InventoryItem targetItem)
     {
-        highlighter.SetParent(targetGrid.GetComponent<RectTransform>());
-
-        Vector2 pos = targetGrid.CalculatePositionOnGrid(targetItem, 
-            targetItem.onGridPositionX, targetItem.onGridPositionY);
+        Vector2 pos = targetGrid.CalculatePositionOnGrid(targetItem, targetItem.onGridPositionX, targetItem.onGridPositionY);
 
         highlighter.localPosition = pos;
 
+    }
+
+    //overloaded method
+    public void SetPosition(ItemGrid target_grid, InventoryItem target_item, int pos_x, int pos_y)
+    {
+        Vector2 pos = target_grid.CalculatePositionOnGrid(target_item, pos_x, pos_y);
+        highlighter.localPosition = pos;
     }
 
     public void SetColour(InventoryItem targetItem)
     {
         Image highlighterColour = targetItem.GetComponent<Image>();
         highlighterColour.color = targetItem.item_data.SlotColour;
+    }
+
+    public void SetParentForHighlight(ItemGrid targetGrid)
+    {
+        highlighter.SetParent(targetGrid.GetComponent<RectTransform>());
     }
 }

@@ -62,6 +62,7 @@ public class InventoryController : MonoBehaviour
             {
                 inventoryHighlight.Show(true);
                 inventoryHighlight.SetSize(item_to_highlight);
+                inventoryHighlight.SetParentForHighlight(itemGrid);
                 inventoryHighlight.SetPosition(itemGrid, item_to_highlight);
                 //inventoryHighlight.SetColour(item_to_highlight);
             }
@@ -72,7 +73,11 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-
+            inventoryHighlight.Show(true);
+            inventoryHighlight.SetSize(selected_item);
+            inventoryHighlight.SetParentForHighlight(itemGrid);
+            inventoryHighlight.SetPosition(itemGrid, selected_item, positionOnGrid.x, positionOnGrid.y);
+            //inventoryHighlight.SetColour(item_to_highlight);
         }
     }
 
@@ -84,7 +89,8 @@ public class InventoryController : MonoBehaviour
         rectTransform = item_to_add.GetComponent<RectTransform>();
         rectTransform.SetParent(canvas_transform);
 
-        item_to_add.Set(item_data);
+        int selected_item_id = UnityEngine.Random.Range(0, items.Count);
+        item_to_add.Set(items[selected_item_id]);
     }
     private void CreateSlotBackground()
     {

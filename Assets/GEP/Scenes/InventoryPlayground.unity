@@ -1976,7 +1976,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemGrid: {fileID: 304591484}
-  items: []
+  items:
+  - {fileID: 11400000, guid: 7ed0cf533c4222d49b108b91951cffa9, type: 2}
+  - {fileID: 11400000, guid: 03c7a59bd0d74bb418b5841fdcadaf60, type: 2}
+  - {fileID: 11400000, guid: 9c58dcc3987c05947b79860a540c6dda, type: 2}
+  - {fileID: 11400000, guid: b42ebc8b8bbd1404d93990197dab4cc1, type: 2}
+  - {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  - {fileID: 11400000, guid: 160bcf4fa78201a49929c6096ba847b2, type: 2}
   item_prefab: {fileID: 5646697626644835478, guid: 9d9de52da32c42540bdecced3626f230,
     type: 3}
   slot: {fileID: 3617991168193653280, guid: ebd7f033fd07a324586d070c85eaa41d, type: 3}
@@ -2313,7 +2319,7 @@ PrefabInstance:
     - target: {fileID: 7109445987595918470, guid: ebd7f033fd07a324586d070c85eaa41d,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.39215687
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 7832011561244882474, guid: ebd7f033fd07a324586d070c85eaa41d,
         type: 3}
