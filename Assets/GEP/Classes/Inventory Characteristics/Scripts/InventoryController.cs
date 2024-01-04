@@ -21,11 +21,20 @@ public class InventoryController : MonoBehaviour
     public GameObject item_name;
     public GameObject item_description;
 
+    InventoryHighlight inventoryHighlight;
+    InventoryItem item_to_highlight;
+
+    private void Awake()
+    {
+        inventoryHighlight = GetComponent<InventoryHighlight>();
+    }
+
     private void Update()
     {
         if (itemGrid == null) { return; }
 
         ItemDrag();
+        HandleHighlight();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -40,6 +49,30 @@ public class InventoryController : MonoBehaviour
 
         UpdateText();
 
+    }
+
+    private void HandleHighlight()
+    {
+        Vector2Int positionOnGrid = GetTilePosition();
+
+        if (selected_item == null)
+        {
+            item_to_highlight = itemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
+            if(item_to_highlight != null)
+            {
+                inventoryHighlight.Show(true);
+                inventoryHighlight.SetSize(item_to_highlight);
+                inventoryHighlight.SetPosition(itemGrid, item_to_highlight);
+            }
+            else
+            {
+                inventoryHighlight.Show(false);
+            }
+        }
+        else
+        {
+
+        }
     }
 
     private void CreateItem(ItemData item_data)
@@ -69,7 +102,7 @@ public class InventoryController : MonoBehaviour
 
     private void SelectItem()
     {
-        Vector2Int tile_grid_pos = itemGrid.GetTileGridPosition(Input.mousePosition);
+        Vector2Int tile_grid_pos = GetTilePosition();
 
         if (selected_item == null)
         {
@@ -85,8 +118,30 @@ public class InventoryController : MonoBehaviour
         {
             //place item
             bool complete = itemGrid.PlaceItem(selected_item, tile_grid_pos.x, tile_grid_pos.y, ref overlapItem);
-            if (complete) { selected_item = null; }        
+            if (complete)
+            {
+                selected_item = null;
+                if (overlapItem != null)
+                {
+                    selected_item = overlapItem;
+                    overlapItem = null;
+                    rectTransform = selected_item.GetComponent<RectTransform>();
+                }
+            }
         }
+    }
+
+    private Vector2Int GetTilePosition()
+    {
+        Vector2 position = Input.mousePosition;
+
+        if (selected_item != null)
+        {
+            position.x -= (selected_item.item_data.Width - 1) * ItemGrid.tile_size_width / 2;
+            position.y += (selected_item.item_data.Height - 1) * ItemGrid.tile_size_height / 2;
+        }
+
+        return itemGrid.GetTileGridPosition(position);
     }
 
     private void ItemDrag()
@@ -99,8 +154,18 @@ public class InventoryController : MonoBehaviour
         TextMeshProUGUI name_text = item_name.GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI description_text = item_description.GetComponent<TextMeshProUGUI>();
 
-        //name_text.color = selected_item.item_data.SlotColour;
-        name_text.text = selected_item.item_data.DisplayName;  
-        description_text.text = selected_item.item_data.DisplayDescription;
+        if(item_to_highlight == null)
+        {
+            //clear the text
+            name_text.text = null;
+            description_text.text = null;
+        }
+        else
+        {
+            //name_text.color = selected_item.item_data.SlotColour;
+            name_text.text = item_to_highlight.item_data.DisplayName;
+            description_text.text = item_to_highlight.item_data.DisplayDescription;
+
+        }
     }
 }

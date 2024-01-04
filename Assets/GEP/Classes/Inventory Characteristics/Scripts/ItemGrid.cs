@@ -27,17 +27,22 @@ public class ItemGrid : MonoBehaviour
     {
         InventoryItem toReturn = item_slots[x, y];
 
-        if(toReturn == null) { return null; }
+        if (toReturn == null) { return null; }
 
-        for(int i = 0; i < toReturn.item_data.Width; i++)
-        {
-            for(int j = 0; j < toReturn.item_data.Height; j++)
-            {
-                item_slots[toReturn.onGridPositionX + i, toReturn.onGridPositionY + j] = null;
-            }
-        }
+        CleanGridReference(toReturn);
 
         return toReturn;
+    }
+
+    private void CleanGridReference(InventoryItem item)
+    {
+        for (int i = 0; i < item.item_data.Width; i++)
+        {
+            for (int j = 0; j < item.item_data.Height; j++)
+            {
+                item_slots[item.onGridPositionX + i, item.onGridPositionY + j] = null;
+            }
+        }
     }
 
     private void Init(int width, int height)
@@ -61,17 +66,26 @@ public class ItemGrid : MonoBehaviour
     public bool PlaceItem(InventoryItem item_to_place, int pos_x, int pos_y, ref InventoryItem overlapItem)
     {
         //if out of boundaries do not allow item to be placed
-        if(!boundaryCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height)) { return false; }
+        if (!boundaryCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height)) { return false; }
 
         //if item does not pass the overlap check item cannot be placed!
-        if(!OverlapCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height, ref overlapItem)){ return false;}
+        if (!OverlapCheck(pos_x, pos_y, item_to_place.item_data.Width, item_to_place.item_data.Height, ref overlapItem))
+        {
+            overlapItem = null;
+            return false;
+        }
+
+        if (overlapItem != null)
+        {
+            CleanGridReference(overlapItem);
+        }
 
         RectTransform rectTransform = item_to_place.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
 
-        for(int x = 0; x< item_to_place.item_data.Width; x++)
+        for (int x = 0; x < item_to_place.item_data.Width; x++)
         {
-            for(int y = 0; y < item_to_place.item_data.Height; y++)
+            for (int y = 0; y < item_to_place.item_data.Height; y++)
             {
                 item_slots[pos_x + x, pos_y + y] = item_to_place;
             }
@@ -79,14 +93,19 @@ public class ItemGrid : MonoBehaviour
 
         item_to_place.onGridPositionX = pos_x;
         item_to_place.onGridPositionY = pos_y;
-
-        Vector2 position = new Vector2();
-        position.x = pos_x *tile_size_width + (tile_size_width) * item_to_place.item_data.Width / 2;
-        position.y = -(pos_y * tile_size_height + (tile_size_height) * item_to_place.item_data.Height / 2);
+        Vector2 position = CalculatePositionOnGrid(item_to_place, pos_x, pos_y);
 
         rectTransform.localPosition = position;
 
         return true;
+    }
+
+    public Vector2 CalculatePositionOnGrid(InventoryItem item_to_place, int pos_x, int pos_y)
+    {
+        Vector2 position = new Vector2();
+        position.x = pos_x * tile_size_width + (tile_size_width) * item_to_place.item_data.Width / 2;
+        position.y = -(pos_y * tile_size_height + (tile_size_height) * item_to_place.item_data.Height / 2);
+        return position;
     }
 
     private bool OverlapCheck(int pos_x, int pos_y, int width, int height, ref InventoryItem overlapItem)
@@ -141,5 +160,10 @@ public class ItemGrid : MonoBehaviour
         if(isTileValid(pos_X, pos_y) == false) { return false; }
 
         return true;
+    }
+
+    internal InventoryItem GetItem(int x, int y)
+    {
+        return item_slots[x, y];
     }
 }
