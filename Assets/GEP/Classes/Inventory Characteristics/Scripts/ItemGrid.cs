@@ -80,6 +80,13 @@ public class ItemGrid : MonoBehaviour
             CleanGridReference(overlapItem);
         }
 
+        PlaceItem(item_to_place, pos_x, pos_y);
+
+        return true;
+    }
+
+    public void PlaceItem(InventoryItem item_to_place, int pos_x, int pos_y)
+    {
         RectTransform rectTransform = item_to_place.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
 
@@ -96,8 +103,6 @@ public class ItemGrid : MonoBehaviour
         Vector2 position = CalculatePositionOnGrid(item_to_place, pos_x, pos_y);
 
         rectTransform.localPosition = position;
-
-        return true;
     }
 
     public Vector2 CalculatePositionOnGrid(InventoryItem item_to_place, int pos_x, int pos_y)
@@ -135,6 +140,22 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
+    private bool CheckAvailableSpace(int pos_x, int pos_y, int width, int height)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (item_slots[pos_x + x, pos_y + y] != null)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     bool isTileValid(int pos_x, int pos_y)
     {
         if(pos_x < 0 || pos_y < 0)
@@ -150,7 +171,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    bool boundaryCheck(int pos_X, int pos_y, int width, int height)
+    public bool boundaryCheck(int pos_X, int pos_y, int width, int height)
     {
         if(isTileValid(pos_X, pos_y) == false) { return false; }
 
@@ -165,5 +186,24 @@ public class ItemGrid : MonoBehaviour
     internal InventoryItem GetItem(int x, int y)
     {
         return item_slots[x, y];
+    }
+
+    public Vector2Int? FindSpaceForObject(InventoryItem item_to_add)
+    {
+        int height = gridHeight - item_to_add.item_data.Height + 1;
+        int width = gridWidth - item_to_add.item_data.Width + 1;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if(CheckAvailableSpace(x, y, item_to_add.item_data.Width, item_to_add.item_data.Height))
+                {
+                    return new Vector2Int(x, y);
+                }
+            }
+        }
+
+        return null;
     }
 }
