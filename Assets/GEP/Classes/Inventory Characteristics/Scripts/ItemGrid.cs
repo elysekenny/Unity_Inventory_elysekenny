@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class ItemGrid : MonoBehaviour
 {
@@ -15,8 +17,10 @@ public class ItemGrid : MonoBehaviour
 
     RectTransform rectTransform;
 
-    [SerializeField] private int gridWidth;
-    [SerializeField] private int gridHeight;
+    [SerializeField] public int gridWidth;
+    [SerializeField] public int gridHeight;
+
+    [SerializeField] GameObject line;
 
     private void Start()
     {
@@ -47,6 +51,8 @@ public class ItemGrid : MonoBehaviour
 
     private void Init(int width, int height)
     {
+        //DrawGrid();
+
         item_slots = new InventoryItem[width, height];
         Vector2 size = new Vector2(width * tile_size_width, height * tile_size_height);
         rectTransform.sizeDelta = size;
@@ -206,4 +212,44 @@ public class ItemGrid : MonoBehaviour
 
         return null;
     }
+    private void DrawGrid()
+    {
+        RectTransform transform;
+        Vector2 size = new Vector2Int();
+        Vector2 pos = new Vector2Int();
+
+        //draw vertical lines
+        for (int x = 0; x < gridWidth; x++)
+        {
+            GameObject line_to_draw = Instantiate(line);
+            transform = line_to_draw.GetComponent<RectTransform>();
+            transform.SetParent(this.GetComponent<RectTransform>());
+            
+            pos.x = x * tile_size_width;
+            pos.y = -190;
+            line_to_draw.transform.position = pos;
+            Debug.Log(pos.x);
+
+            size.x = 1;
+            size.y = gridHeight * tile_size_height;
+            transform.sizeDelta = size;
+        }
+
+        //draw horizontal lines
+        for (int y = 0; y < gridHeight; y++)
+        {
+            GameObject line_to_draw = Instantiate(line);
+            transform = line_to_draw.GetComponent<RectTransform>();    
+
+            pos.x = 460;
+            pos.y = -(y * tile_size_height);
+            transform.position = pos;
+
+            size.x = gridWidth * tile_size_width;
+            size.y = 1;
+            transform.sizeDelta = size;
+            transform.SetParent(this.GetComponent<RectTransform>());
+        }
+    }
+
 }

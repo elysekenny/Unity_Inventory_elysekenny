@@ -16,7 +16,6 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
-    [SerializeField] GameObject slot;
     [SerializeField] Transform canvas_transform;
     [SerializeField] ExampleItem item_collected;
     public GameObject item_name;
@@ -198,4 +197,5 @@ public class InventoryController : MonoBehaviour
 
         }
     }
+   
 }
