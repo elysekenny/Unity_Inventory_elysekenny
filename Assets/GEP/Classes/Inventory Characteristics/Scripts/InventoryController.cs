@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 
-public class InventoryController : MonoBehaviour
+public class InventoryController : MonoBehaviour, IPickupable
 {
     [SerializeField] private ItemGrid itemGrid;
 
@@ -17,7 +17,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
     [SerializeField] Transform canvas_transform;
-    [SerializeField] ExampleItem item_collected;
+    public ExampleItem item_collected;
     public GameObject item_name;
     public GameObject item_description;
 
@@ -37,19 +37,6 @@ public class InventoryController : MonoBehaviour
         ItemDrag();
         HandleHighlight();
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if(selected_item!= null)
-            {
-                CreateItem(item_collected.getItemPickedUp());
-            }       
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InsertRandomItem();
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             SelectItem();
@@ -59,11 +46,11 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    private void InsertRandomItem()
+    private void InsertRandomItem(ItemData item_to_insert)
     {
         if (itemGrid == null) { return; }
 
-        CreateItem(item_collected.getItemPickedUp());
+        CreateItem(item_to_insert);
         InventoryItem item_to_add = selected_item;
         selected_item = null;
         InsertItem(item_to_add);
@@ -124,8 +111,7 @@ public class InventoryController : MonoBehaviour
         rectTransform = item_to_add.GetComponent<RectTransform>();
         rectTransform.SetParent(canvas_transform);
 
-        int selected_item_id = UnityEngine.Random.Range(0, items.Count);
-        item_to_add.Set(items[selected_item_id]);
+        item_to_add.Set(item_data);
     }
 
     private void SelectItem()
@@ -197,5 +183,12 @@ public class InventoryController : MonoBehaviour
 
         }
     }
-   
+
+    public void Pickup(InventoryHolder inventory)
+    {
+        ItemData item_added = inventory.InventorySystem.latest_item;
+
+        //gets item data from the inventory holder
+        InsertRandomItem(item_added);
+    }
 }

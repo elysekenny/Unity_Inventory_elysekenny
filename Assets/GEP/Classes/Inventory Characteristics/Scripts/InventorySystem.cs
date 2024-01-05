@@ -17,6 +17,8 @@ public class InventorySystem
 
     public UnityAction<InventorySlot> OnInventorySlotChanged;
 
+    public ItemData latest_item;
+
     public InventorySystem(int size)
     {
         inventorySlots = new List<InventorySlot>(size);
@@ -35,6 +37,7 @@ public class InventorySystem
             //adds item to next slot
             freeSlot.UpdateInventorySlot(itemToAdd);
             OnInventorySlotChanged?.Invoke(freeSlot);
+            latest_item = itemToAdd;
             return true;
         }
         else

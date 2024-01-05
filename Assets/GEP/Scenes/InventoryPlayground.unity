@@ -718,6 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 03c7a59bd0d74bb418b5841fdcadaf60, type: 2}
+  is_dirty: 0
 --- !u!65 &581790481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1457,6 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 7ed0cf533c4222d49b108b91951cffa9, type: 2}
+  is_dirty: 0
 --- !u!65 &893323119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1887,7 +1889,7 @@ MonoBehaviour:
   item_prefab: {fileID: 5646697626644835478, guid: 9d9de52da32c42540bdecced3626f230,
     type: 3}
   canvas_transform: {fileID: 304591482}
-  item_collected: {fileID: 1697071424}
+  item_collected: {fileID: 893323118}
   item_name: {fileID: 657754534}
   item_description: {fileID: 1339808371}
 --- !u!114 &1488124987
@@ -2013,6 +2015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  is_dirty: 0
 --- !u!65 &1560491474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2433,6 +2436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  is_dirty: 0
 --- !u!65 &1697071425
 BoxCollider:
   m_ObjectHideFlags: 0
