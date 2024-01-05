@@ -103,6 +103,25 @@ public class InventoryController : MonoBehaviour, IPickupable
         }
     }
 
+    private void RemoveItem()
+    {
+        Vector2Int positionOnGrid = GetTilePosition();
+
+        if (oldPosition == positionOnGrid)
+        {
+            return;
+        }
+
+        oldPosition = positionOnGrid;
+        if (selected_item == null)
+        {
+            if(Input.GetMouseButtonDown(1))
+            {
+                Debug.Log("Removing");
+            }
+        }
+    }
+
     private void CreateItem(ItemData item_data)
     {
         InventoryItem item_to_add = Instantiate(item_prefab).GetComponent<InventoryItem>();
@@ -190,5 +209,7 @@ public class InventoryController : MonoBehaviour, IPickupable
 
         //gets item data from the inventory holder
         InsertRandomItem(item_added);
+
+        Debug.Log("Inventory Controller Pickup Called");
     }
 }
