@@ -51,7 +51,7 @@ public class ItemGrid : MonoBehaviour
 
     private void Init(int width, int height)
     {
-        //DrawGrid();
+        DrawGrid();
 
         item_slots = new InventoryItem[width, height];
         Vector2 size = new Vector2(width * tile_size_width, height * tile_size_height);
@@ -219,16 +219,15 @@ public class ItemGrid : MonoBehaviour
         Vector2 pos = new Vector2Int();
 
         //draw vertical lines
-        for (int x = 0; x < gridWidth; x++)
+        for (int x = 0; x < gridWidth - 1; x++)
         {
             GameObject line_to_draw = Instantiate(line);
             transform = line_to_draw.GetComponent<RectTransform>();
             transform.SetParent(this.GetComponent<RectTransform>());
             
-            pos.x = x * tile_size_width;
-            pos.y = -190;
-            line_to_draw.transform.position = pos;
-            Debug.Log(pos.x);
+            pos.x = (x + 1) * tile_size_width;
+            pos.y = -380;
+            line_to_draw.transform.localPosition = pos;            
 
             size.x = 1;
             size.y = gridHeight * tile_size_height;
@@ -236,14 +235,16 @@ public class ItemGrid : MonoBehaviour
         }
 
         //draw horizontal lines
-        for (int y = 0; y < gridHeight; y++)
+        for (int y = 0; y < gridHeight - 1; y++)
         {
             GameObject line_to_draw = Instantiate(line);
-            transform = line_to_draw.GetComponent<RectTransform>();    
+            transform = line_to_draw.GetComponent<RectTransform>();
+            transform.SetParent(this.GetComponent<RectTransform>());
 
-            pos.x = 460;
-            pos.y = -(y * tile_size_height);
-            transform.position = pos;
+            pos.x = 0;
+            pos.y =  -(y + 1) * tile_size_height;
+            line_to_draw.transform.localPosition = pos;
+            Debug.Log(pos.y);
 
             size.x = gridWidth * tile_size_width;
             size.y = 1;
