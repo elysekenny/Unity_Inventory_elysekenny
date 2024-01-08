@@ -191,7 +191,9 @@ public class ItemGrid : MonoBehaviour
 
     internal InventoryItem GetItem(int x, int y)
     {
-        return item_slots[x, y];
+        if(x >= 0 && x < gridWidth && y >= 0 && y < gridHeight) { return item_slots[x, y]; }
+
+        return null;
     }
 
     public Vector2Int? FindSpaceForObject(InventoryItem item_to_add)

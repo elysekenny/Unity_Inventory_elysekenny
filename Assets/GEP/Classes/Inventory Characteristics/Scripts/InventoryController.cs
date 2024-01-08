@@ -21,6 +21,8 @@ public class InventoryController : MonoBehaviour, IPickupable
     public GameObject item_name;
     public GameObject item_description;
 
+    [SerializeField] ItemData test_item;
+
     InventoryHighlight inventoryHighlight;
     InventoryItem item_to_highlight;
     Vector2Int oldPosition;
@@ -28,6 +30,7 @@ public class InventoryController : MonoBehaviour, IPickupable
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
+        
     }
 
     private void Update()
@@ -36,6 +39,11 @@ public class InventoryController : MonoBehaviour, IPickupable
 
         ItemDrag();
         HandleHighlight();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InsertRandomItem(test_item);
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
