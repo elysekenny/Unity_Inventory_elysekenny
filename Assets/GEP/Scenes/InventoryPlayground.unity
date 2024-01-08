@@ -163,7 +163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 274, y: 574}
+  m_AnchoredPosition: {x: 92, y: 453}
   m_SizeDelta: {x: 920, y: 380}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &304591483
@@ -1163,6 +1163,7 @@ MonoBehaviour:
   item_name: {fileID: 657754534}
   item_description: {fileID: 1339808371}
   test_item: {fileID: 11400000, guid: b4c371510e393d34a9f48ec80594c320, type: 2}
+  player: {fileID: 971310013}
 --- !u!4 &1306920532
 Transform:
   m_ObjectHideFlags: 0
@@ -1629,6 +1630,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109445987595918470, guid: ebd7f033fd07a324586d070c85eaa41d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109445987595918470, guid: ebd7f033fd07a324586d070c85eaa41d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109445987595918470, guid: ebd7f033fd07a324586d070c85eaa41d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7832011561244882474, guid: ebd7f033fd07a324586d070c85eaa41d,
         type: 3}
@@ -2159,6 +2175,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFollowCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 6610657493722314811, guid: 2d03d89c31c1ccf42a11ca0c990c8e4d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6610657493722315204, guid: 2d03d89c31c1ccf42a11ca0c990c8e4d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2232,6 +2253,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4174508469755562983, guid: 4df9a87682b4e6647adb52038cc94cab,
+        type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1306920529}
     - target: {fileID: 7225226454402747168, guid: 4df9a87682b4e6647adb52038cc94cab,
         type: 3}
       propertyPath: m_Name

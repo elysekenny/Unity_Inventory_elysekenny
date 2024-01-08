@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 
-public class InventoryController : MonoBehaviour, IPickupable
+public class InventoryController : MonoBehaviour
 {
     [SerializeField] private ItemGrid itemGrid;
 
@@ -28,6 +28,8 @@ public class InventoryController : MonoBehaviour, IPickupable
     InventoryItem item_to_highlight;
     Vector2Int oldPosition;
 
+    [SerializeField] GameObject player;
+
     private bool on_hover = false;
 
     private void Awake()
@@ -42,17 +44,13 @@ public class InventoryController : MonoBehaviour, IPickupable
 
         ItemDrag();
         HandleHighlight();
+        AddToInventory();
 
         if (on_hover)
         {
             RemoveItem();
         }
         
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            InsertRandomItem(test_item);
-        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -131,14 +129,24 @@ public class InventoryController : MonoBehaviour, IPickupable
             //can use item to highlight because thats the hovered item
             Debug.Log(item_to_highlight.item_data.DisplayName);
 
-            //remove icon, remove slot data, spawn in world an item with item_to_highlight.item_data attached to it
-            item_location.x = item_to_highlight.onGridPositionX;
-            item_location.y = item_to_highlight.onGridPositionY;
+            //free up slots
+            for(int x = 0; x < item_to_highlight.item_data.Width; x++) 
+            {
+                item_location.x = item_to_highlight.onGridPositionX + x;
+                for (int y = 0; y < item_to_highlight.item_data.Height; y++)
+                {                 
+                    item_location.y = item_to_highlight.onGridPositionY + y;
+                    itemGrid.item_slots[item_location.x, item_location.y] = null;
+                }
+            }
+            //destroy actual item in the slot
+            //spawn new item
 
             Debug.Log(item_location);
-            //FOR EACH LOOP FOR EACH SLOT IT IS TAKING UP
-            itemGrid.item_slots[item_location.x, item_location.y] = null;
-            selected_item = null;
+
+            Destroy(item_to_highlight);
+
+            //destroy image game object
         }
     }
 
@@ -223,13 +231,16 @@ public class InventoryController : MonoBehaviour, IPickupable
         }
     }
 
-    public void Pickup(InventoryHolder inventory)
+    public void AddToInventory()
     {
-        ItemData item_added = inventory.InventorySystem.latest_item;
+        InventoryHolder inventory = player.GetComponent<InventoryHolder>();
+        if(inventory.InventorySystem.inventory_updated)
+        {
+            InsertRandomItem(inventory.InventorySystem.latest_item);
+            inventory.InventorySystem.inventory_updated = false;
 
-        //gets item data from the inventory holder
-        InsertRandomItem(item_added);
-
-        Debug.Log("Inventory Controller Pickup Called");
+            Debug.Log("item added");
+        }
+        
     }
 }

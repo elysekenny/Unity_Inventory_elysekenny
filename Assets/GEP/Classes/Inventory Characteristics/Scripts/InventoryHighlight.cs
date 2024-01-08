@@ -37,12 +37,16 @@ public class InventoryHighlight : MonoBehaviour
 
     public void SetColour(InventoryItem targetItem)
     {
-        Image highlighterColour = targetItem.GetComponent<Image>();
-        highlighterColour.color = targetItem.item_data.SlotColour;
+        Image highlighterColour = highlighter.GetComponent<Image>();
+        Color colour = targetItem.item_data.SlotColour;
+        //makes slot translucent
+        colour.a = 100;
+        highlighterColour.color = colour;
     }
 
     public void SetParentForHighlight(ItemGrid targetGrid)
     {
         highlighter.SetParent(targetGrid.GetComponent<RectTransform>());
     }
+
 }

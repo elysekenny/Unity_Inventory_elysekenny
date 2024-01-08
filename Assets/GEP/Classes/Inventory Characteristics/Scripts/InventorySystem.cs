@@ -9,13 +9,11 @@ public class InventorySystem
 {
     [SerializeField] private List<InventorySlot> inventorySlots;
 
-    private int inventory_width;
-    private int inventory_height;
-
     public List<InventorySlot> InventorySlots => inventorySlots;
     public int InventorySize => InventorySlots.Count;
 
     public ItemData latest_item;
+    public bool inventory_updated = false;
 
     public InventorySystem(int size)
     {
@@ -36,6 +34,7 @@ public class InventorySystem
             freeSlot.UpdateInventorySlot(itemToAdd);
 
             latest_item = itemToAdd;
+            inventory_updated = true;
             return true;
         }
         else
@@ -43,6 +42,7 @@ public class InventorySystem
             //no slots are free!
             return false;
         }
+
     }
 
     public bool HasFreeSlot(out InventorySlot freeSlot)
