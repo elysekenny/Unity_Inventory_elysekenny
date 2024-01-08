@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ItemGrid : MonoBehaviour
 {
-    InventoryItem[,] item_slots;
+    public InventoryItem[,] item_slots;
 
     public const float tile_size_width = 83.64f;
     public const float tile_size_height = 95;

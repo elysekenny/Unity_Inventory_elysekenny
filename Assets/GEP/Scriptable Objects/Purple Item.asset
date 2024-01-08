@@ -17,5 +17,5 @@ MonoBehaviour:
   DisplayDescription: Probably toxic
   Width: 2
   Height: 2
-  SlotColour: {r: 0.5509499, g: 0, b: 0.6320754, a: 0}
+  SlotColour: {r: 0.5509499, g: 0, b: 0.6320754, a: 1}
   ItemID: 3

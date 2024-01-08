@@ -12,6 +12,7 @@ public class InventoryController : MonoBehaviour, IPickupable
 
     InventoryItem selected_item;
     InventoryItem overlapItem;
+    InventoryItem item_to_remove;
     RectTransform rectTransform;
 
     [SerializeField] List<ItemData> items;
@@ -27,6 +28,8 @@ public class InventoryController : MonoBehaviour, IPickupable
     InventoryItem item_to_highlight;
     Vector2Int oldPosition;
 
+    private bool on_hover = false;
+
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
@@ -39,6 +42,12 @@ public class InventoryController : MonoBehaviour, IPickupable
 
         ItemDrag();
         HandleHighlight();
+
+        if (on_hover)
+        {
+            RemoveItem();
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -94,11 +103,14 @@ public class InventoryController : MonoBehaviour, IPickupable
                 inventoryHighlight.SetSize(item_to_highlight);
                 inventoryHighlight.SetParentForHighlight(itemGrid);
                 inventoryHighlight.SetPosition(itemGrid, item_to_highlight);
-                //inventoryHighlight.SetColour(item_to_highlight);
+                inventoryHighlight.SetColour(item_to_highlight);
+
+                on_hover = true;
             }
             else
             {
                 inventoryHighlight.Show(false);
+                on_hover = false;
             }
         }
         else
@@ -107,26 +119,26 @@ public class InventoryController : MonoBehaviour, IPickupable
             inventoryHighlight.SetSize(selected_item);
             inventoryHighlight.SetParentForHighlight(itemGrid);
             inventoryHighlight.SetPosition(itemGrid, selected_item, positionOnGrid.x, positionOnGrid.y);
-            //inventoryHighlight.SetColour(item_to_highlight);
+            inventoryHighlight.SetColour(item_to_highlight);
         }
     }
 
     private void RemoveItem()
     {
-        Vector2Int positionOnGrid = GetTilePosition();
-
-        if (oldPosition == positionOnGrid)
+        Vector2Int item_location = new Vector2Int();
+        if (Input.GetMouseButtonDown(1))
         {
-            return;
-        }
+            //can use item to highlight because thats the hovered item
+            Debug.Log(item_to_highlight.item_data.DisplayName);
 
-        oldPosition = positionOnGrid;
-        if (selected_item == null)
-        {
-            if(Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("Removing");
-            }
+            //remove icon, remove slot data, spawn in world an item with item_to_highlight.item_data attached to it
+            item_location.x = item_to_highlight.onGridPositionX;
+            item_location.y = item_to_highlight.onGridPositionY;
+
+            Debug.Log(item_location);
+            //FOR EACH LOOP FOR EACH SLOT IT IS TAKING UP
+            itemGrid.item_slots[item_location.x, item_location.y] = null;
+            selected_item = null;
         }
     }
 
@@ -204,7 +216,7 @@ public class InventoryController : MonoBehaviour, IPickupable
         }
         else
         {
-            //name_text.color = item_to_highlight.item_data.SlotColour;
+            name_text.color = item_to_highlight.item_data.SlotColour;
             name_text.text = item_to_highlight.item_data.DisplayName;
             description_text.text = item_to_highlight.item_data.DisplayDescription;
 

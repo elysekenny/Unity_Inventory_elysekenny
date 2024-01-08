@@ -17,4 +17,5 @@ MonoBehaviour:
   DisplayDescription: This might just be a water bottle.
   Width: 1
   Height: 1
-  SlotColour: {r: 0, g: 0.61708117, b: 1, a: 0}
+  SlotColour: {r: 0, g: 0.61708117, b: 1, a: 1}
+  ItemID: 0
