@@ -17,6 +17,8 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject item_prefab;
+    [SerializeField] GameObject pickupable_prefab;
+    
     [SerializeField] Transform canvas_transform;
     public ExampleItem item_collected;
     public GameObject item_name;
@@ -141,6 +143,18 @@ public class InventoryController : MonoBehaviour
             }
             //destroy actual item in the slot
             //spawn new item
+            GameObject floor_item = Instantiate(pickupable_prefab);
+
+            //sets the item data to the data of the removeed item
+            ExampleItem floor_data= floor_item.GetComponent<ExampleItem>();
+            floor_data.ItemData = item_to_highlight.item_data;
+
+            Transform floor_rect = floor_item.gameObject.GetComponent<Transform>();
+            Vector3 floor_pos = new Vector3();
+            floor_pos.x = player.transform.position.x;
+            floor_pos.y = 1f;
+            floor_pos.z = player.transform.position.z + 1;
+            floor_rect.position = floor_pos;
 
             Debug.Log(item_location);
 
