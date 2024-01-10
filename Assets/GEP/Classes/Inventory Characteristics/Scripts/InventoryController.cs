@@ -156,9 +156,10 @@ public class InventoryController : MonoBehaviour
             floor_pos.z = player.transform.position.z + 1;
             floor_rect.position = floor_pos;
 
-            Debug.Log(item_location);
+            Destroy(item_to_highlight.gameObject);
 
-            Destroy(item_to_highlight);
+            //removes the highlight
+            inventoryHighlight.Show(false);
 
             //destroy image game object
         }
