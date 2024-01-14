@@ -15,11 +15,11 @@ public class InventorySystem
     public ItemData latest_item;
     public bool inventory_updated = false;
 
-    public InventorySystem(int size)
+    public InventorySystem()
     {
-        inventorySlots = new List<InventorySlot>(size);
+        inventorySlots = new List<InventorySlot>(2);
 
-        for(int i =0; i < size; i++)
+        for(int i =0; i < 2; i++)
         {
             inventorySlots.Add(new InventorySlot());
         }
@@ -27,28 +27,13 @@ public class InventorySystem
 
     public bool AddToInventory(ItemData itemToAdd)
     {
-        //create new slot ui
-        if(HasFreeSlot(out InventorySlot freeSlot))
-        {
-            //adds item to next slot
-            freeSlot.UpdateInventorySlot(itemToAdd);
+        //store previous item at first index, and hold most recent picked up item in index 1
+        inventorySlots[0].UpdateInventorySlot(inventorySlots[1].Item_Data);
+        inventorySlots[1].UpdateInventorySlot(itemToAdd);
 
-            latest_item = itemToAdd;
-            inventory_updated = true;
-            return true;
-        }
-        else
-        {
-            //no slots are free!
-            return false;
-        }
-
-    }
-
-    public bool HasFreeSlot(out InventorySlot freeSlot)
-    {
-        freeSlot = InventorySlots.FirstOrDefault(i => i.Item_Data == null);
-        return freeSlot == null ? false : true;
+        latest_item = itemToAdd;
+        inventory_updated = true;
+        return true;
     }
 
 }

@@ -32,10 +32,4 @@ public class InventorySlot
     {
         item_data = data;
     }
-
-    public void DrawSlot(ItemData item)
-    {
-        icon.sprite = item.Icon;
-        icon.color = item.SlotColour;
-    }
 }
