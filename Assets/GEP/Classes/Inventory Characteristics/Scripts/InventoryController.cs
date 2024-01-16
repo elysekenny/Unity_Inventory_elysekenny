@@ -63,7 +63,7 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    private void InsertRandomItem(ItemData item_to_insert)
+    private void InsertItemIntoGrid(ItemData item_to_insert)
     {
         if (itemGrid == null) { return; }
 
@@ -129,7 +129,6 @@ public class InventoryController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             //can use item to highlight because thats the hovered item
-            Debug.Log(item_to_highlight.item_data.DisplayName);
 
             //free up slots
             for(int x = 0; x < item_to_highlight.item_data.Width; x++) 
@@ -251,10 +250,8 @@ public class InventoryController : MonoBehaviour
         InventoryHolder inventory = player.GetComponent<InventoryHolder>();
         if(inventory.InventorySystem.inventory_updated)
         {
-            InsertRandomItem(inventory.InventorySystem.latest_item);
+            InsertItemIntoGrid(inventory.InventorySystem.latest_item);
             inventory.InventorySystem.inventory_updated = false;
-
-            Debug.Log("item added");
         }
         
     }
